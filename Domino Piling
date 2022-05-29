@@ -1,0 +1,3 @@
+def dominoPiling(num):
+    n,m=map(int,num.split())
+    print (n*m//2)
