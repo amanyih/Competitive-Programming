@@ -13,9 +13,15 @@ class MyQueue(object):
 
     def pop(self):
         if len(self.stack)!=0:
-            return self.stack.pop(0)
-        else:
-            return None
+            tempStack = []
+            for elements in range (len(self.stack)):
+                tempStack.append(self.stack.pop())
+            x = tempStack.pop()
+            for elements in range (len(tempStack)):
+                self.stack.append(tempStack.pop())
+            
+            return x
+        
         
         
 
