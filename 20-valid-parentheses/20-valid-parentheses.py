@@ -1,22 +1,28 @@
-class Solution(object):
-    
-    def isValid(self,s):
-        lst =[]
-        for i in range(len(s)):
-            if s[i] =="(" or s[i] == "[" or s[i] == "{":
-                lst.append(s[i])
-            elif len(lst)>0:
-                if lst[-1] =="(" and s[i] ==")":
-                    lst.pop()
-                elif lst[-1] == "[" and s[i] == "]":
-                    lst.pop()
-                elif lst[-1] == "{" and s[i] == "}":
-                    lst.pop()
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=[]
+        opening =["(","[","{"]
+        for char in s:
+            if char in opening:
+                stack.append(char)
+            elif len(stack) > 0:
+                if char == ")" and stack[-1] == "(":
+                    stack.pop()
+                elif char == "}" and stack[-1] == "{":
+                    stack.pop()
+                elif char == "]" and stack[-1] == "[":
+                    stack.pop()
                 else:
                     return False
             else:
                 return False
-        if len(lst) == 0:
+        
+        
+        if len(stack) == 0:
             return True
-        else:
-            return False
+                
+                
+        
+        
+        
+        
