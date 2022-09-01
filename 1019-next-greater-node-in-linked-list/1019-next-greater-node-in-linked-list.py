@@ -6,21 +6,16 @@
 class Solution:
     def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:
         stack = []
-        count = 0
-        tail= head
-        while head:
-            count+=1
-            head = head.next
-        
-        ansList = [0]*count
+        ansList = []
         index = 0
-        while tail:
-            while stack and stack[-1][0] < tail.val:
-                ansList[stack.pop()[1]]= tail.val
+        while head:
+            ansList.append(0)
+            while stack and stack[-1][0] < head.val:
+                ansList[stack.pop()[1]]= head.val
                 
             
-            stack.append([tail.val, index])
-            tail=tail.next
+            stack.append([head.val, index])
+            head=head.next
             index += 1
             
             
