@@ -12,9 +12,8 @@ class Solution(object):
         
         while first:
             count = 0
-            compare = first.val
             temp = first
-            while temp and temp.val == compare:
+            while temp and temp.val == first.val:
                 count += 1
                 temp = temp.next
             if count == 1:
