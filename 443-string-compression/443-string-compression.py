@@ -8,11 +8,10 @@ class Solution:
             while right < len(chars) and chars[left] == chars[right]:
                 right += 1
             
-            length = right - left
             chars[ans] = chars[left]
             ans += 1
-            if length != 1:
-                for i in str(length):
+            if right-left != 1:
+                for i in str(right - left):
                     chars[ans] = i
                     ans += 1
             left = right
