@@ -6,13 +6,10 @@ class Solution:
         
         boats = 0
         
-        while low < high:
-            if people[low] + people[high] > limit:
-                high -=1
-            else:
-                high -= 1
+        while low <= high:
+            if people[low] + people[high] <= limit:
                 low += 1
-            
+            high -= 1
             boats += 1
         
-        return boats +1 if low == high else boats
+        return boats
