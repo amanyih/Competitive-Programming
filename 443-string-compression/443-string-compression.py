@@ -9,12 +9,9 @@ class Solution:
                 right += 1
             
             length = right - left
-            if length == 1:
-                chars[ans]=chars[left]
-                ans += 1
-            else:
-                chars[ans] = chars[left]
-                ans += 1
+            chars[ans] = chars[left]
+            ans += 1
+            if length != 1:
                 for i in str(length):
                     chars[ans] = i
                     ans += 1
