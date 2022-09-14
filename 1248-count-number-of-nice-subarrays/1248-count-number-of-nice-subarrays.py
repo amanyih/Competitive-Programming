@@ -2,16 +2,11 @@ class Solution:
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
         
         dict_ = {}
-        
-        for i in range(len(nums)):
-            if nums[i] %2 ==0:
-                nums[i] = 0
-            else:
-                nums[i] = 1
         currentSum = 0
         ans = 0
         
         for num in nums:
+            num = 0 if num % 2 == 0 else 1
             currentSum += num
             if currentSum == k:
                 ans += 1
