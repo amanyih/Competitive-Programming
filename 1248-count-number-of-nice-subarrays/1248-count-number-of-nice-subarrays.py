@@ -6,8 +6,7 @@ class Solution:
         ans = 0
         
         for num in nums:
-            num = 0 if num % 2 == 0 else 1
-            currentSum += num
+            currentSum += 0 if num % 2 == 0 else 1
             if currentSum == k:
                 ans += 1
             if (currentSum - k) in dict_:
