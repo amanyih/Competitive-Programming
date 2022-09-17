@@ -1,0 +1,20 @@
+array = input().split()
+lst = [int(array[0])]
+left = int(array[1])-1
+right = int(array[2])
+
+def code(lst):
+    for i in range(len(lst)):
+        if lst[i] != 0 or lst[i] != 1:
+            x = lst.pop(i)
+            floor1 = x//2
+            next = x % 2
+            lst.insert(i,floor1)
+            lst.insert(i,next)
+            lst.insert(i,floor1)
+            return code(lst)
+    
+    return lst
+newList = code(lst)
+
+print(newList[left:right])
