@@ -1,15 +1,21 @@
 class Solution:
     def sortArrayByParity(self, nums: List[int]) -> List[int]:
-        even = []
-        odd = []
         
-        for num in nums:
-            if num %2 == 0:
-                even.append(num)
+        left = 0
+        right = 1
+        
+        while right < len(nums):
+            if nums[left] % 2 == 0:
+                left += 1
+                right += 1
+            elif nums[right] % 2 == 0:
+                nums[left],nums[right] = nums[right],nums[left]
+                left+= 1
+                right += 1
             else:
-                odd.append(num)
+                right += 1
+        
+        return nums
             
-        return even + odd
-    
     
         
