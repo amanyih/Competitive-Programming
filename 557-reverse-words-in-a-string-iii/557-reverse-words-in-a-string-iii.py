@@ -1,13 +1,18 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
-        lst = s.split()
+        ans = ""
+        stack = []
         
-        for i in range(len(lst)):
-            newWord = ""
-            for j in range(len(lst[i]) -1,-1,-1):
-                newWord += lst[i][j]
+        for char in s:
+            if char != " ":
+                stack.append(char)
+            else:
+                while stack:
+                    ans += stack.pop()
+                ans += " "
+        
+        while stack:
+            ans+= stack.pop()
             
-            lst[i] = newWord
-        
-        return " ".join(lst)
+        return ans
         
