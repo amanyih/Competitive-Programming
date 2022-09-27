@@ -1,14 +1,13 @@
-class Solution(object):
-    def majorityElement(self, nums):
-        fre = {}
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        
+        count = 0
+        majorCandidate = None
         
         for num in nums:
-            if fre and num in fre:
-                fre[num] += 1
-            else:
-                fre[num] = 1
+            if count == 0:
+                majorCandidate = num
+            
+            count += 1 if num == majorCandidate else -1
         
-        for key in fre:
-            if fre[key] > len(nums) / 2:
-                return key
-        
+        return majorCandidate
