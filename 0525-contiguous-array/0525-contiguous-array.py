@@ -1,19 +1,22 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         
+        count = {0:-1}
         
-        counts = {0:-1}
-        count = 0
+        cur = 0
+        
         ans = 0
         
-        for i,value in enumerate(nums):
-            count += 1 if value == 1 else -1
+        for i,num in enumerate(nums):
             
-            if count in counts:
-                ans = max(i-counts[count],ans)
+            cur += 1 if num == 1 else -1
+            
+            if cur in count:
+                
+                ans = max(ans,i-count[cur])
+                
             else:
-                counts[count] = i
+                
+                count[cur] = i
         
         return ans
-            
-        
