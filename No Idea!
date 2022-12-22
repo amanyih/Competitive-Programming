@@ -1,0 +1,16 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+djfkd = [input().split()]
+
+lst = [x for x in input().split()]
+a = set([x for x in input().split()])
+b = set([x for x in input().split()])
+happiness= 0
+
+for num in lst:
+    if num in a:
+        happiness += 1
+    if num in b:
+        happiness -= 1
+
+print(happiness)
