@@ -1,0 +1,23 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+def is_strict_superset(lst1,lst2):
+    
+    sett = set(lst1)
+    
+    for lst in lst2:
+        if len( sett - set(lst) ) >= 1 and set(lst) - sett == set():
+            continue
+        else:
+            return False
+    
+    return True
+
+A = [int(x) for x in input().split()]
+n = int(input())
+allSets = []
+
+for i in range(n):
+    newSet = [int(x) for x in input().split()]
+    allSets.append(newSet)
+
+print(is_strict_superset(A,allSets))
