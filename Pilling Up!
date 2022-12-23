@@ -1,0 +1,38 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+def can_be_pilled(lst):
+    
+    left = 0
+    right = len(lst) - 1
+    stack = []
+    
+    while left <= right:
+        if stack:
+            if lst[left] <= stack[-1] and lst[left] >= lst[right]:
+                stack.append(lst[left])
+                left += 1
+            elif lst[right] <= stack[-1] and lst[right] >= lst[left]:
+                stack.append(lst[right])
+                right -= 1
+            else:
+                return False
+        else:
+            if lst[left] >= lst[right]:
+                stack.append(lst[left])
+                left += 1
+            else:
+                stack.append(lst[right])
+                right -= 1
+    
+    return True
+
+T = int(input()) #No of Testcases
+
+for _ in range(T):
+    l = input()
+    lst = [int(x) for x in input().split()]
+    
+    if can_be_pilled(lst):
+        print("Yes")
+    else:
+        print("No")
+    
