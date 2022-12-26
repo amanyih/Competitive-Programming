@@ -1,0 +1,7 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+first = set(map(int,input().split()))
+k = int(input())
+second = set(map(int,input().split()))
+
+print(len(first.union(second)))
