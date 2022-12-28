@@ -1,0 +1,6 @@
+if __name__ == '__main__':
+    import math
+    n = int(input())
+    lst = [i**2 for i in range(n)]
+    for num in lst:
+        print(num)
