@@ -1,0 +1,14 @@
+from collections import defaultdict
+
+n,m = map(int,input().split())
+
+A = defaultdict(list)
+
+for i in range(n):
+    A[input()].append(str(i+1))
+lst = []
+for j in range(m):
+    lst.append(input())
+
+for char in lst:
+    print((" ".join(A[char]))if A[char] else "-1" )
