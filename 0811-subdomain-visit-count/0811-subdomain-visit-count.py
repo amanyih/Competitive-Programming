@@ -7,12 +7,12 @@ class Solution:
             
             lst = domain.split()
             freq = int(lst[0])
-            newDomain = deque(lst[1].split("."))
+            newDomain = lst[1].split(".")
             
             while newDomain:
                 dom = ".".join(newDomain)
                 count[dom] += freq
-                newDomain.popleft()
+                newDomain.pop(0)
         ans = []
         
         for key in count:
