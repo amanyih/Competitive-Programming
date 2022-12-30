@@ -1,0 +1,22 @@
+t = int(input())
+
+values = {"S":-1, "M":0,"L":1,"X":10}
+
+for i in range(t):
+    t_shirt1,t_shirt2 = input().split()
+
+    t_shirt1_sum = 1
+    t_shirt2_sum = 1
+
+    for s in t_shirt1:
+        t_shirt1_sum *= values[s]
+    
+    for s in t_shirt2:
+        t_shirt2_sum *= values[s]
+    
+    if t_shirt1_sum < t_shirt2_sum:
+        print("<")
+    elif t_shirt1_sum > t_shirt2_sum:
+        print(">")
+    else:
+        print("=")
