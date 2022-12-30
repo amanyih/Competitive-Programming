@@ -1,0 +1,22 @@
+testCases = int(input())
+
+for _ in range(testCases):
+    n = int(input())
+    nums = map(int, input().split())
+    chars = input()
+
+
+    dict_ = {}
+    flag = True
+
+    for i,num in enumerate(nums):
+
+        if num in dict_ and dict_[num] != chars[i]:
+            flag = False
+            print("NO")
+            break
+        elif num not in dict_:
+            dict_[num] = chars[i]
+    
+    if flag:
+        print("YES")
