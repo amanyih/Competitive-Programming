@@ -1,0 +1,14 @@
+from collections import Counter
+t = int(input())
+
+for _ in range(t):
+    n,c = [int(x) for x in input().split()]
+    planets = [int(x) for x in input().split()]
+    count = Counter(planets)
+
+    cost = 0
+
+    for planet in count:
+        cost += min(c,count[planet])
+    
+    print(cost)
