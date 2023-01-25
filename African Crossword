@@ -1,0 +1,42 @@
+n,m = [int(x) for x in input().split()]
+grid = []
+gridCopy = []
+
+for i in range(n):
+    row = [x for x in input()]
+    rowCopy  = row.copy()
+    grid.append(row)
+    gridCopy.append(rowCopy)
+
+
+def moveRight(row,col):
+    target = gridCopy[row][col]
+    count = 0
+
+    for i in range(col+1,m):
+        if gridCopy[row][i] == target:
+            grid[row][i] = None
+            count += 1
+    if count > 0:
+        grid[row][col] = None
+def moveDown(row,col):
+    target = gridCopy[row][col]
+    count = 0
+    for i in range(row+1,n):
+        if gridCopy[i][col] == target:
+            grid[i][col] = None
+            count += 1
+    if count > 0:
+        grid[row][col] = None
+
+ans = []
+
+
+for i in range(n):
+    for j in range(m):
+        moveDown(i,j)
+        moveRight(i,j)
+
+        if grid[i][j] != None:
+            ans.append(grid[i][j])
+print("".join(ans))
