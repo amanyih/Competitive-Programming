@@ -3,13 +3,13 @@ class Solution:
         
         n = len(arr)
         
-        ans = [-1] * n
         curMax = -1
         
         
         for i in range(n-1,-1,-1):
-            ans[i] = curMax
-            curMax = max(curMax,arr[i])
-        return ans
+            curNum = arr[i]
+            arr[i] = curMax
+            curMax = max(curMax,curNum)
+        return arr
             
         
