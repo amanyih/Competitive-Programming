@@ -1,23 +1,16 @@
 class Solution:
     def judgeSquareSum(self, c: int) -> bool:
-        
+        if c == 0:
+            return True
         rangee = ceil(sqrt(c))
-        nums = [i for i in range(rangee+1)]
         
-        left = 0
-        right = len(nums) - 1
-        while left <= right:
-            sqLeft = nums[left] **2
-            sqRight = nums[right] ** 2
+        for i in range(rangee):
+            target = sqrt(c - (i**2))
             
-            res = sqLeft + sqRight
-            
-            if res > c:
-                right -= 1
-            elif res < c:
-                left += 1
-            else:
+            if target <= rangee and target == ceil(target):
                 return True
+        
+        
         return False
          
         
