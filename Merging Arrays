@@ -1,0 +1,23 @@
+n,m = [int(x) for x in input().split()]
+ 
+arr1 = [int(x) for x in input().split()]
+arr2 = [int(x) for x in input().split()]
+ 
+l = r = 0
+ans = []
+ 
+while l < len(arr1) and r < len(arr2):
+    if arr1[l] < arr2[r]:
+        ans.append(arr1[l])
+        l += 1
+    else:
+        ans.append(arr2[r])
+        r += 1
+ 
+while l < len(arr1):
+    ans.append(arr1[l])
+    l += 1
+while r < len(arr2):
+    ans.append(arr2[r])
+    r += 1
+print(*ans)
