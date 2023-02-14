@@ -1,0 +1,17 @@
+n,m = map(int,input().split())
+ 
+lst1 = [int(x) for x in input().split()]
+lst2 = [int(x) for x in input().split()]
+ 
+ans = []
+f = 0
+ 
+ 
+for i in range(m):
+ 
+    while f < n and lst2[i] > lst1[f]:
+        f += 1
+    
+    ans.append(f )
+ 
+print(*ans)
