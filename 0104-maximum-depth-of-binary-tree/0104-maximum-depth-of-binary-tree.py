@@ -7,21 +7,18 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
-        if not root:
-            return 0
-        
-        ans = []
-        
-        def traverse(node,depth):
-            
+        def traverse(node):
             if not node:
-                return
-            depth += 1
-            ans.append(depth)
-            traverse(node.left,depth)
-            traverse(node.right,depth)
-        
-        traverse(root,0)
-        return max(ans)
+                return 0
+            
+            left = 0
+            right = 0
+            
+            left += traverse(node.left)
+            right += traverse(node.right)
+            
+            return max(left,right) + 1
+            
+        return traverse(root)
             
         
