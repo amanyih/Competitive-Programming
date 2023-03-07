@@ -13,7 +13,7 @@ class Solution:
         
     
         left = 1
-        right = sum(nums)
+        right = max(nums)
         
         while left + 1 <= right:
             mid = (right + left) // 2
