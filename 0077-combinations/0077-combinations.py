@@ -1,29 +1,32 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        ans = []
         
-        def helper(cur,stack):
-            
-            if len(stack) == k:
-                newList = stack.copy()
-                if len(set(newList)) == k:
-                    ans.append(newList)
+        solution = []
+        
+        def isValidState(state):
+            if len(state) == k and len(set(state)) == k:
+                return True
+            return False
+        
+        def getNextCandidates(state):
+            lastNum = state[-1] if state else 0
+            return [x for x in range(lastNum+1,n+1)]
+        
+        def search(state):
+            if isValidState(state):
+                solution.append(state[:])
                 return
-            current = [x for x in range(cur+1,n+1)]
+            elif len(state) == k:
+                return
             
-            for num in current:
-                s = stack.copy()
-                s.append(num)
-                helper(num,s)
+            for candidate in getNextCandidates(state):
+                state.append(candidate)
+                search(state)
+                state.pop()
         
-        for i in range(n):
-            helper(i,[])
-        
-        res = []
-        
-        for a in ans:
-            if a not in res:
-                res.append(a)
-        return res
-        
+        def solve():
+            state = []
+            search(state)
+        solve()
+        return solution
         
