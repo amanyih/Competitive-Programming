@@ -6,13 +6,14 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        
-        nums = []
+        global nums
+        nums = 0
         
         def traverse(node,path):
+            global nums
             if not node.left and not node.right:
                 path.append(str(node.val))
-                nums.append(int("".join(path)))
+                nums += (int("".join(path)))
                 path.pop()
                 return
             
@@ -27,5 +28,5 @@ class Solution:
             
             path.pop()
         traverse(root,[])
-        return sum(nums)
+        return nums
         
