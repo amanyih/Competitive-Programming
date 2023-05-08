@@ -20,7 +20,7 @@ class Solution:
         res = []
         
         while q:
-            print(q)
+            # print(q)
             
             cur = q.popleft()
             res.append(cur)
