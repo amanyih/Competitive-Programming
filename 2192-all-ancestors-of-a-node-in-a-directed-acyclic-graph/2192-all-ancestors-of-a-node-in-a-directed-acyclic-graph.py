@@ -19,17 +19,17 @@ class Solution:
         
         while q:
             
-            for _ in range(len(q)):
-                cur = q.popleft()
+            # for _ in range(len(q)):
+            cur = q.popleft()
 
-                for c in graph[cur]:
-                    ind[c] -= 1
+            for c in graph[cur]:
+                ind[c] -= 1
 
-                    ans[c].update(ans[cur])
-                    ans[c].add(cur)
+                ans[c].update(ans[cur])
+                ans[c].add(cur)
 
-                    if  ind[c] == 0:
-                        q.append(c)
+                if  ind[c] == 0:
+                    q.append(c)
         
         return [sorted(list(ans[i])) for i in range(n)]
             
