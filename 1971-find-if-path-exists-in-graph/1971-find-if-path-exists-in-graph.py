@@ -1,28 +1,27 @@
 class Solution:
-    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+    def validPath(self, n: int, edges: List[List[int]], sou: int, des: int) -> bool:
         
-        graph = defaultdict(list)
+        graph = {i:i for i in range(n)}
+        # print(graph)
+        
+        def getParent(node):
+            cur = node
+            
+            while node != graph[node]:
+                node = graph[node]
+            return node
+        def connect(a,b):
+            ap = getParent(a)
+            bp = getParent(b)
+            
+            graph[ap] = bp
+        
         
         for a,b in edges:
-            graph[a].append(b)
-            graph[b].append(a)
+            connect(a,b)
+        # print(graph)
         
-        def dfs(node,target,visited):
-            
-            
-            if node == target:
-                return True
-            
-            visited.add(node)
-            
-            for neighbour in graph[node]:
-                if neighbour not in visited:
-                    
-                    if dfs(neighbour,target,visited):
-                        return True
-            return False
-        
-        return dfs(source,destination,set())
+        return getParent(sou) == getParent(des)
         
             
             
