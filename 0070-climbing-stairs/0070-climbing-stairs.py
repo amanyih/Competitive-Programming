@@ -1,11 +1,21 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        @cache
-        def help(cur):
-            if cur == 1 or cur == 2:
-                return cur
-            return help(cur-1) + help(cur - 2)
+        memo = {}
+        
+        def help(n):
+            
+            if n in memo:
+                return memo[n]
+            
+            if n <= 2:
+                return n
+            
+            
+            memo[n] = help(n-1) + help(n-2)
+            
+            return memo[n]
+        
         
         return help(n)
         
