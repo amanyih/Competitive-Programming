@@ -1,28 +1,41 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
-        res = []
-        global visited
-        visited = 0
+        ans = []
+        global bt
+        bt = 0
         
-        
-        def backtrack(path):
-            global visited
+        def isOn(bt,index):
+            res = 1<<index & bt
             
-            if len(path) == len(nums):
-                res.append(path[:])
+            return res != 0
+            
+        
+        def backtrack(cur):
+            # print(cur)
+            global bt
+            if len(cur) == len(nums):
+                # print(cur)
+                ans.append(cur[:])
                 return
             
             for i in range(len(nums)):
-                mask = 1 << (i)
-                if visited & mask == 0:
-                    path.append(nums[i])
-                    visited += mask
-                    backtrack(path)
-                    path.pop()
-                    visited -= mask
+                if not isOn(bt,i):
+                    bt += 1<<i
+                    cur.append(nums[i])
+                    backtrack(cur)
+                    cur.pop()
+                    bt -= 1<<i
+                    
+        
         backtrack([])
-        return res
+        
+        return ans
+                    
+                    
+                
+            
+            
                     
         
         
