@@ -1,22 +1,20 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        memo = {}
+        last = 1
+        afterLast = 0
         
-        def help(n):
+        for i in range(n,0,-1):
             
-            if n in memo:
-                return memo[n]
+            cur = last + afterLast
+            afterLast = last
+            last = cur
+        
+        return last
             
-            if n <= 2:
-                return n
             
             
-            memo[n] = help(n-1) + help(n-2)
-            
-            return memo[n]
         
         
-        return help(n)
         
         
