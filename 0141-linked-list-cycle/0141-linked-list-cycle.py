@@ -5,20 +5,17 @@ class ListNode:
             self.next = None
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if head == None: return False
-        if head.next == None: return False
-        if head.next.next == None: return False
+    def hasCycle(self, node: Optional[ListNode]) -> bool:
+        if not node or not node.next or not node.next.next: return False
         
-        first = head.next.next
-        second = head.next
+        fast = node.next.next
+        slow = node.next
         
-        while first != None and second != None:
-            if (first == second):
+        while slow and fast and fast.next:
+            if slow == fast:
                 return True
-            elif first.next == None or second.next == None:
-                return False
-            else:
-                first = first.next.next
-                second = second.next
+            fast = fast.next.next
+            slow = slow.next
+        
+        return False
             
