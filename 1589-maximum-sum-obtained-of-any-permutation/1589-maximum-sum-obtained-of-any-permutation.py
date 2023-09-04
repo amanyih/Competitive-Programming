@@ -1,25 +1,27 @@
 class Solution:
     def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
         
-        n = len(nums)
-        prefix = [0] * n
+        MOD = 10 ** 9 + 7
         
-        for request in requests:
-            i,j = request
-            prefix[i] += 1
-            if j+1  < n:
-                prefix[j+1] -= 1
+        
+        line = [0 for num in nums]
+        
+        for a,b in requests:
+            line[a] += 1
+            # print(a,line)
             
-        for i in range(1,n):
-            prefix[i] = prefix[i-1] + prefix[i]
+            if b+1 < len(nums):
+                line[b+1] -= 1
         
+                
+        for i in range(1,len(line)):
+            line[i] += line[i-1]
+        
+        line.sort()
         nums.sort()
-        prefix.sort()
-        
         ans = 0
+        for i in range(len(nums)):
+            ans += nums[i] * line[i]
         
-        for i in range(n):
-            ans += prefix[i] * nums[i]
-        return ans % (10**9 + 7)
-            
+        return ans % MOD
         
