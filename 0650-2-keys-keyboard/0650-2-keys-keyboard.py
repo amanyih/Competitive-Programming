@@ -1,7 +1,6 @@
 class Solution:
     def minSteps(self, n: int) -> int:
         
-        cache = {1 :0,2:2}
         
         def findFactor(n):
             
@@ -11,14 +10,14 @@ class Solution:
             return 1
         
         def find(n):
-            if n in cache:
-                return cache[n]
+            if n == 1:
+                return 0
+            if n <=5:
+                return n
             
             factor = findFactor(n)
              
-            cur = find(factor) + n//factor
-            cache[n] = cur
-            return cur
+            return find(factor) + n//factor
         return find(n)
         
         
