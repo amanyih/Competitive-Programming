@@ -21,7 +21,6 @@ class Trie:
 
     def allPrefixExist(self,word) -> bool:
         node = self.root
-        
         for char in word:
             if char not in node.children or not node.children[char].is_end:
                 return False
@@ -33,12 +32,14 @@ class Solution:
         trie = Trie()
         for word in words:
             trie.insert(word)
-        words.sort()
         ans = ""
         maxans = 0
         for word in words:
-            if trie.allPrefixExist(word) and len(word) > maxans:
+            if trie.allPrefixExist(word) and len(word) >= maxans:
+                if len(word) == maxans:
+                    ans = min(ans,word)
+                else:
+                    ans = word
                 maxans = len(word)
-                ans = word
         return ans
         
