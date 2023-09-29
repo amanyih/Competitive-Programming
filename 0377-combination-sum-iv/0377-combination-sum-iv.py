@@ -1,12 +1,27 @@
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         
-        cache = defaultdict(int)
-        cache[0] = 1
+        cache = {0 : 1}
+    
         
-        for val in range(1,target+1):
+        def find(target):
+            # print(target)
+            
+            if target in cache:
+                return cache[target]
+            elif target < 0:
+                return 0
+            
+            count = 0
+            
             for num in nums:
-                cache[val] += cache[val-num]
+                count += find(target - num)
+            
+            cache[target] = count
+            
+            
+            return count
         
-        return cache[target]
+        return find(target)
+        
         
