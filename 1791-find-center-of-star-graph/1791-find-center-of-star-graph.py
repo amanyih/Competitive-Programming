@@ -1,11 +1,13 @@
 class Solution:
     def findCenter(self, edges: List[List[int]]) -> int:
+        graph = defaultdict(list)
         
-        st = set(edges[0])
         
-        for i in range(1,len(edges)):
-            st = st.intersection(set(edges[i]))
+        for a,b in edges:
+            graph[a].append(b)
+            graph[b].append(a)
         
-        for k in st:
-            return k
+        for node in graph:
+            if len(graph[node]) >1:
+                return node
         
