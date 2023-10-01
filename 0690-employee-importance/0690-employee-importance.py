@@ -10,34 +10,18 @@ class Employee:
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
         
+        totalImportance = 0
+        ids = {}
+        for i in range(len(employees)):
+            ids[employees[i].id] = i
         
-        graph = defaultdict(tuple)
+        stack = [employees[ids[id]]]
+        while stack:
+            emp = stack.pop()
+            totalImportance += emp.importance
+            
+            for sub in emp.subordinates:
+                stack.append(employees[ids[sub]])
         
-        for em in employees:
-            _id,imp,sub = em.id,em.importance,em.subordinates
-            graph[_id] = (imp,sub)
+        return totalImportance
         
-        global total
-        total = 0
-        visited = set()
-        
-        def dfs(idd):
-            global total
-            
-            visited.add(idd)
-            imp,sub = graph[idd]
-            total += imp
-            
-            for i in sub:
-                if i not in visited:
-                    dfs(i)
-        dfs(id)
-        return total
-        
-            
-            
-            
-            
-            
-            
-            
