@@ -7,17 +7,19 @@
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
         
-        ans = 0
-        
-        def dfs(node,parent = None,grand=None):
-            nonlocal ans
-            if not node: return
+        def dfs(node,p=1,gp=1):
+            if not node:
+                return 0
             
-            if grand != None and grand.val % 2 == 0:
-                ans += node.val
-            dfs(node.left,node,parent)
-            dfs(node.right,node,parent)
-        dfs(root)
-        return ans
+            count = 0
+            if not gp%2:
+
+                count += node.val
+            count += dfs(node.left,node.val,p) + dfs(node.right,node.val,p)
+            
+            return count
         
+        return dfs(root)
+            
+            
         
