@@ -1,36 +1,30 @@
 class Solution:
-    def findOrder(self, num: int, preq: List[List[int]]) -> List[int]:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
         graph = defaultdict(list)
-        inde = defaultdict(int)
+        indegree = defaultdict(int)
         
-        for pre in preq:
-            a,b = pre
+        for a,b in prerequisites:
             graph[b].append(a)
-            inde[a] += 1
+            indegree[a] += 1
+            
+        q = deque()
         
-        starts = []
-        
-        for i in range(num):
-            if not inde[i]:
-                starts.append(i)
-        
-        q = deque(starts)
-        
-        res = []
-        
+        for i in range(numCourses):
+            if not indegree[i]:
+                q.append(i)
+        # print(q)
+        order = []
         while q:
-            # print(q)
-            
             cur = q.popleft()
-            res.append(cur)
+            order.append(cur)
             
-            for c in graph[cur]:
-                
-                inde[c] -= 1
-                if inde[c] == 0:
-                    q.append(c)
-        
-        
-        return res if len(res) == num else []
+            for nxt in graph[cur]:
+                indegree[nxt] -= 1
+                if not indegree[nxt]:
+                    q.append(nxt)
+        # print(order)
+        if len(order) != numCourses:
+            return []
+        return order
             
