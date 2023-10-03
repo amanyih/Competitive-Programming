@@ -1,33 +1,33 @@
 class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
         
-        
-        
+        n = len(recipes)
+        allRecipes = set(recipes)
         graph = defaultdict(list)
-        inde = defaultdict(int)
-        
-        
-        for i in range(len(recipes)):
-            
-            
-            for ing in ingredients[i]:
-                graph[ing].append(recipes[i])
-            inde[recipes[i]] += len(ingredients[i])
-        
+        indegree = defaultdict(int)
+        for i in range(n):
+            ingredient = ingredients[i]
+            recipe = recipes[i]
+            for ingr in ingredient:
+                graph[ingr].append(recipe)
+                indegree[recipe] += 1
         q = deque(supplies)
-        rec = set(recipes)
         
         res = []
         
         while q:
             cur = q.popleft()
             
-            if cur in rec:
-                res.append(cur)
-            
-            for c in graph[cur]:
-                inde[c] -= 1
-                if inde[c] ==0:
-                    q.append(c)
-        
+            for nxt in graph[cur]:
+                indegree[nxt] -= 1
+                
+                if indegree[nxt] == 0:
+                    q.append(nxt)
+                    if nxt in allRecipes:
+                        res.append(nxt)
         return res
+            
+                
+                
+                
+            
