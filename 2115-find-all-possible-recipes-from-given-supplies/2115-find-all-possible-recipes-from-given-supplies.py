@@ -2,7 +2,7 @@ class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
         
         n = len(recipes)
-        allRecipes = set(recipes)
+        # allRecipes = set(recipes)
         graph = defaultdict(list)
         indegree = defaultdict(int)
         for i in range(n):
