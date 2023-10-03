@@ -23,8 +23,8 @@ class Solution:
                 
                 if indegree[nxt] == 0:
                     q.append(nxt)
-                    if nxt in allRecipes:
-                        res.append(nxt)
+                    
+                    res.append(nxt)
         return res
             
                 
