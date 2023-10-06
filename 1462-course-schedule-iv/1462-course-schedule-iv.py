@@ -9,7 +9,6 @@ class Solution:
         dependencyGraph = defaultdict(set)
         isReachable = [[False for i in range(num)] for j in range(num)]
         
-        
         for i in range(num):
             q = deque([i])
             
@@ -24,13 +23,6 @@ class Solution:
         ans = []
         for a,b in queries:
             ans.append(isReachable[a][b])
-        
-        
-            
-            
-            
-            
-            
-        
+
         return ans
         
