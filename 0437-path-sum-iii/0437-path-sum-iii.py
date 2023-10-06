@@ -8,27 +8,22 @@ class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         
         global count
-        global target
-        target = targetSum
         count = 0
+        seen = defaultdict(int)
+        seen[0] = 1
         
-        def traverse(node,seen,curSum):
+        def traverse(node,cur = 0):
             global count
-            global target
             if not node:
                 return
             
+            cur_val = cur + node.val
+            count += seen[cur_val-targetSum]
+            seen[cur_val] += 1
+            traverse(node.left,cur_val)
+            traverse(node.right,cur_val)
+            seen[cur_val] -= 1
             
-            # print("here",seen[target-node.val],"node.val",node.val)
-            curSum += node.val
-            count += seen[curSum-target]
-            curSeen = seen.copy()
-            curSeen[curSum] += 1
-            
-            traverse(node.left,curSeen,curSum)
-            traverse(node.right,curSeen,curSum)
-        intial = defaultdict(int)
-        intial[0] += 1
-        traverse(root,intial,0)
+        traverse(root)
         return count
-        
+            
