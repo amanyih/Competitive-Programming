@@ -66,14 +66,8 @@ class Solution:
                 return res
             return -1
         peek = findPeek()
-        # print(peek)
-        # return peek
         left = searchBeforePeek(peek)
-        # print(left) 
-        # return left
         right = searchAfterPeek(peek)
-        # print("right",right)
-        
         if left == -1 and right == -1:
             return -1
         elif left == -1 or right == -1:
