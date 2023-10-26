@@ -1,9 +1,8 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         value = defaultdict(int)
-        value[0] = -1
         for i,char in enumerate(order):
-            value[char] = i
+            value[char] = i + 1
         
         def compare(word1,word2):
             n = max(len(word1),len(word2))
