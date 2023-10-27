@@ -7,24 +7,22 @@
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         
-        res  = []
         
-        def traverse(path,node):
+        ans = []
+        
+        def traverse(node,path):
             if not node:
                 return
-            elif not node.right and not node.left:
+            if not node.left and not node.right:
                 path.append(str(node.val))
-                res.append(path[:])
+                ans.append("->".join(path))
                 path.pop()
-                return
-            
+                return 
             path.append(str(node.val))
-            traverse(path,node.left)
-            traverse(path,node.right)
+            traverse(node.left,path)
+            traverse(node.right,path)
             path.pop()
         
-        traverse([],root)
-        for i in range(len(res)):
-            res[i] = "->".join(res[i])
+        traverse(root,[])
+        return ans
         
-        return res
