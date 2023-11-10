@@ -1,38 +1,35 @@
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
-        result = []
-        indegree = defaultdict(int)
+        
+        
         graph = defaultdict(list)
         
-        for left, right in adjacentPairs:
-            graph[left].append(right)
-            graph[right].append(left)
-            indegree[left] += 1
-            indegree[right] += 1
+        for a,b in adjacentPairs:
+            graph[a].append(b)
+            graph[b].append(a)
         
-        ends = [element for element in indegree if indegree[element] == 1]
+        q = deque()
+        ans = []
         
-        for element in graph:
-            if indegree[element] == 1:
-                start = element
+        for key in graph:
+            # print(key,graph[key])
+            if len(graph[key]) == 1:
+                q.append(key)
                 break
         
-        queue = collections.deque([start])
-        result.append(start)
+        visited = set()
+        while q:
+            # print("adfsad")
+            cur = q.popleft()
+            visited.add(cur)
+            ans.append(cur)
+            
+            for nxt in graph[cur]:
+                if nxt not in visited:
+                    q.append(nxt)
         
-        while queue:
-            curr = queue.popleft()
-            for neighbor in graph[curr]:
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 1:
-                    queue.append(neighbor)
-                    result.append(neighbor)
+        return ans
+            
         
-        if ends[0] == start:
-            result.append(ends[1])
-        else:
-            result.append(ends[0])
-    
-        return result
-
+        
         
